@@ -34,3 +34,8 @@ Here is an example of its content:
   }
 }
 ```
+
+
+## Test 
+
+Run `npm test`
