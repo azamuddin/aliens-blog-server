@@ -52,7 +52,19 @@ router.get('/', async function(req, res){
 
   try{
 
-    let posts = await models.posts.findAll({where: {}, include:[{model: models.users}]});
+    let { skip = 0, limit = 10 } = req.query;
+
+    let posts =
+      await models
+      .posts
+      .findAll(
+        {
+          where: {},
+          include:[{model: models.users}], 
+          offset: parseInt(skip), 
+          limit: parseInt(limit)
+        }
+      );
 
     return res.json({
       error: 0, 
@@ -106,7 +118,18 @@ router.get('/my-posts',
   async function(req, res){
 
     try{
-      let userPosts = await models.posts.findAll({where: {user_id: req.user.id}})
+      let { skip = 0, limit = 10 } = req.query;
+
+      let userPosts =
+        await models
+        .posts
+        .findAll(
+          {
+            where: {user_id: req.user.id}, 
+            offset: parseInt(skip), 
+            limit: parseInt(limit)
+          }
+        )
 
       return res.json({
         error: 0, 
