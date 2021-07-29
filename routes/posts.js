@@ -81,37 +81,6 @@ router.get('/', async function(req, res){
 
 });
 
-router.get('/:id', async function(req, res){
-
-  try{
-    let id = req.params.id; 
-
-    let post = await models.posts.findOne({where: {id}, include: [{model: models.users}]})
-
-    if(!post){
-      return res.json({
-        error: 1, 
-        message: "Post not found",
-      }); 
-    };
-
-
-    return res.json({
-      error: 0, 
-      data: post
-    });
-
-  } catch(err) {
-
-    return res.json({
-      error: 1, 
-      message: err.message, 
-      data: err
-    })
-  }
-
-});
-
 
 router.get('/my-posts',
   jwt({secret: process.env.JWT_SECRET, algorithms: ['HS256']}),
@@ -145,5 +114,37 @@ router.get('/my-posts',
     }
   }
 );
+
+
+router.get('/:id', async function(req, res){
+
+  try{
+    let id = req.params.id; 
+
+    let post = await models.posts.findOne({where: {id}, include: [{model: models.users}]})
+
+    if(!post){
+      return res.json({
+        error: 1, 
+        message: "Post not found",
+      }); 
+    };
+
+
+    return res.json({
+      error: 0, 
+      data: post
+    });
+
+  } catch(err) {
+
+    return res.json({
+      error: 1, 
+      message: err.message, 
+      data: err
+    })
+  }
+
+});
 
 module.exports = router;
