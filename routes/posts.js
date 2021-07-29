@@ -52,7 +52,7 @@ router.get('/', async function(req, res){
 
   try{
 
-   let posts = await models.posts.findAll({});
+    let posts = await models.posts.findAll({where: {}, include:[{model: models.users}]});
 
     return res.json({
       error: 0, 
