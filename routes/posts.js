@@ -74,7 +74,7 @@ router.get('/:id', async function(req, res){
   try{
     let id = req.params.id; 
 
-    let post = await models.posts.findOne({where: {id}})
+    let post = await models.posts.findOne({where: {id}, include: [{model: models.users}]})
 
     if(!post){
       return res.json({
