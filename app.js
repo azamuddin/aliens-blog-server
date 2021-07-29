@@ -11,8 +11,6 @@ const authRouter = require('./routes/auth');
 
 dotenv.config({path: './.env'});
 
-console.log('APPP ENV', process.env.JWT_SECRET)
-
 var app = express();
 
 // view engine setup
