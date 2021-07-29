@@ -48,6 +48,7 @@ describe("Auth", () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.nested.property("data.token");
+          res.body.should.have.nested.property("data.user");
           done();
         })
     });

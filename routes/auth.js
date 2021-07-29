@@ -63,13 +63,17 @@ router.post('/login', async function(req, res){
     } 
 
 
-    const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET);
+    const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET, {algorithm: "HS256"});
+
+    user = user.toJSON();
+    delete user.password;
 
     return res.json({
       error:0, 
       message: "Successfully login", 
       data: {
-        token
+        token, 
+        user
       }
     })
 
