@@ -126,6 +126,7 @@ router.get('/my-posts',
         .findAll(
           {
             where: {user_id: req.user.id}, 
+            include:[{model: models.users}], 
             offset: parseInt(skip), 
             limit: parseInt(limit)
           }
