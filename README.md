@@ -35,10 +35,17 @@ Here is an example of its content:
 }
 ```
 
+## MySQL 
+
+MySQL and PHPMyadmin service can be turned on with `docker-compose up`. 
+
+MySQL using PORT 3306 and PHPMyadmin on 8080. 
+
+If the ports conflict with ports on your local machine, you can change on .env `MYSQL_PORT` and `PMA_PORT`.
 
 ## Test 
 
-Run `npm test`
+Run `npm test`. 
 
 
 ## Regarding MySQL on Docker. 

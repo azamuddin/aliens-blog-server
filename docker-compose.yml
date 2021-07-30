@@ -1,44 +1,17 @@
 version: "3.1"
 
 services:
-  app:
-    command: sails lift --production
-    build:
-      context: ./workspace
-    tty: true
-    links:
-      - mysql
-    depends_on:
-      - mysql
-    ports:
-      - ${APP_PORT}:1337
-    volumes:
-      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
-
-  workspace:
-    build:
-      context: ./workspace
-    tty: true
-    restart: always
-    links:
-      - mysql
-    depends_on:
-      - mysql
-    volumes:
-      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
 
   mysql:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    #command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0 --sql-mode="" --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    #command: --bind-address=0.0.0.0
     restart: always
     ports:
       - "${MYSQL_PORT}:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - ./mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     security_opt:
       - seccomp:unconfined
 
