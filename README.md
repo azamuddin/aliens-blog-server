@@ -39,3 +39,8 @@ Here is an example of its content:
 ## Test 
 
 Run `npm test`
+
+
+## Regarding MySQL on Docker. 
+
+I usually use MySQL official image through docker-compose, the `docker-compose.yml` is included in this repo
