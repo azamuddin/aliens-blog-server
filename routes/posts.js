@@ -61,6 +61,9 @@ router.get('/', async function(req, res){
         {
           where: {},
           include:[{model: models.users}], 
+          order: [
+            ['id', 'DESC']
+          ],
           offset: parseInt(skip), 
           limit: parseInt(limit)
         }
@@ -96,6 +99,9 @@ router.get('/my-posts',
           {
             where: {user_id: req.user.id}, 
             include:[{model: models.users}], 
+            order: [
+              ['id', 'DESC']
+            ],
             offset: parseInt(skip), 
             limit: parseInt(limit)
           }
